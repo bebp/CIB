@@ -1,10 +1,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const prefix = 'c!';
-const token = 'NzcwNDM2MzI1Mjg3Mzk1NDAx.X5divQ.bi1ee0xPcc09taVNopq2DC6vKO8';
 const fs = require('fs');
-require('dotenv/config');
 client.commands = new Discord.Collection();
+const token = ''
 
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 for(const file of commandFiles){
@@ -21,7 +19,7 @@ const comp = 'COMPETING'
 
 client.once('ready', () => {
     console.log('Bot is online and ready to be used. ');
-    client.user.setActivity('Try c!help', { type: 'live', url: 'https://twitch.tv/ducciest/'}).catch(console.error); 
+    client.user.setActivity('Try c!help', { type: 'PLAYING'}); 
     //types available STREAMING, PLAYING, WATCHING, LISTENING
     client.user.setStatus('dnd').catch(console.error);
 });
@@ -29,8 +27,8 @@ client.on('error', err => {
     console.log(err);
 })
 client.on('message', message =>{
-    if(!message.content.startsWith(prefix) || message.author.bot) return;
-    const args = message.content.slice(prefix.length).split(/ +/);
+    if(!message.content.startsWith('c!') || message.author.bot) return;
+    const args = message.content.slice('c!'.length).split(/ +/);
     const command = args.shift().toLowerCase();
 
     if(command === 'cursed'){
